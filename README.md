@@ -93,6 +93,11 @@ Create a "springboot-example" load balanced web service
 copilot svc init --name springboot-example --svc-type "Load Balanced Web Service" --dockerfile ./Dockerfile
 ```
 
+Deploys a service named "springboot-example" to a "test" environment
+```
+copilot svc deploy --name springboot-example --env test
+```
+
 Delete all resources associated with the application
 ```
 copilot app delete
