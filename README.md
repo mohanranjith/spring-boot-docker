@@ -102,3 +102,8 @@ Delete all resources associated with the application
 ```
 copilot app delete
 ```
+
+# Resources
+* [Spring Boot with Docker](https://spring.io/guides/gs/spring-boot-docker/)
+* [AWS Copilot CLI](https://aws.github.io/copilot-cli/)
+* [AWS Copilot CLI Gitter](https://gitter.im/aws/copilot-cli)
