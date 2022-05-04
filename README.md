@@ -83,18 +83,10 @@ copilot app init --domain <domain_name>
 
 Creates an environment with imported VPC resources
 ```
-copilot env init --import-vpc-id <vpc-id> \`
-`--import-public-subnets <subnet-id, subnet-id> \`
-`--import-private-subnets <subnet-id, subnet-id>`
+copilot env init --import-vpc-id <vpc-id> \
+--import-public-subnets <subnet-id, subnet-id> \
+--import-private-subnets <subnet-id, subnet-id>
 ``` 
-
-$ git clone git@github.com:aws-samples/aws-copilot-sample-service.git demo-app
-$ cd demo-app
-$ copilot init --app demo                \
-  --name api                             \
-  --type 'Load Balanced Web Service'     \
-  --dockerfile './Dockerfile'            \
-  --deploy
   
 Create a "springboot-example" load balanced web service
 ```
