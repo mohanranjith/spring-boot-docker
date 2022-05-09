@@ -4,7 +4,7 @@ WORKDIR /app
 COPY pom.xml .
 RUN mvn dependency:go-offline
 COPY src ./src
-RUN mvn clean install
+RUN mvn clean package
 
 FROM amazoncorretto:8-alpine-jdk
 RUN addgroup -S spring && adduser -S spring -G spring
