@@ -81,21 +81,21 @@ Create a new application with an existing domain name in Amazon Route53
 copilot app init --domain <domain_name>
 ``` 
 
+Create new application
+```
+copilot init
+```
+  
 Creates an environment with imported VPC resources
 ```
 copilot env init --import-vpc-id <vpc-id> \
 --import-public-subnets <subnet-id, subnet-id> \
 --import-private-subnets <subnet-id, subnet-id>
 ``` 
-  
-Create a "springboot-example" load balanced web service
-```
-copilot svc init --name springboot-example --svc-type "Load Balanced Web Service" --dockerfile ./Dockerfile
-```
 
-Deploys a service named "springboot-example" to a "test" environment
+Deploys a service
 ```
-copilot svc deploy --name springboot-example --env test
+copilot deploy
 ```
 
 Delete all resources associated with the application
