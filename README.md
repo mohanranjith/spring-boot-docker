@@ -93,6 +93,11 @@ copilot env init --import-vpc-id <vpc-id> \
 --import-private-subnets <subnet-id, subnet-id>
 ``` 
 
+**IMPORTANT:** Before deploying the service update the copilot/your-service-name/manifest.yml file to include the correct path to the [load balanced web service](https://aws.github.io/copilot-cli/docs/manifest/lb-web-service/) healthcheck as shown below:
+```
+path: '/actuator/health/'
+```
+
 Deploys a service
 ```
 copilot deploy
