@@ -76,26 +76,33 @@ ENTRYPOINT ["java","-jar","/spring-boot-docker-demo.jar"]
 
 ## Deploying the container on existing infrastructure with AWS Copilot CLI
 
-Create a new application with an existing domain name in Amazon Route53
+Create a new application with an existing domain name in Amazon Route53 using [copilot app init](https://aws.github.io/copilot-cli/docs/commands/app-init/) command.
 ```
 copilot app init --domain <domain_name>
 ``` 
 
-Create new application
+Create new application using [copilot init](https://aws.github.io/copilot-cli/docs/commands/init/) command.
 ```
 copilot init
 ```
-  
-Creates an environment with imported VPC resources
+**NOTE:** When prompted if you would like to deploy a test environment? Enter **N**. So that you can specify your own existing VPC resources using [copilot env init](https://aws.github.io/copilot-cli/docs/commands/env-init/) command.
+
+Creates a test environment with imported VPC resources
 ```
-copilot env init --import-vpc-id <vpc-id> \
---import-public-subnets <subnet-id, subnet-id> \
---import-private-subnets <subnet-id, subnet-id>
+copilot env init --name test --profile default --app <app-name> --import-vpc-id <vpc-id> \
+--import-public-subnets <public-subnet-id-a, public-subnet-id-b> \
+--import-private-subnets <private-subnet-id-a, private-subnet-id-b>
 ``` 
 
 **IMPORTANT:** Before deploying the service update the copilot/your-service-name/manifest.yml file to include the correct path to the [load balanced web service](https://aws.github.io/copilot-cli/docs/manifest/lb-web-service/) healthcheck as shown below:
 ```
 path: '/actuator/health/'
+```
+By default, AWS Fargate cluster tasks are hosted in public subnets. However, If you want to place them into your private subnets, add the following to the manifest.yml file:
+```
+network:
+  vpc:
+    placement: 'private'
 ```
 
 Deploys a service
@@ -103,7 +110,7 @@ Deploys a service
 copilot deploy
 ```
 
-Delete all resources associated with the application
+To clean up and delete all resources associated with the application use [copilot app delete](https://aws.github.io/copilot-cli/docs/commands/app-delete/) command.
 ```
 copilot app delete
 ```
