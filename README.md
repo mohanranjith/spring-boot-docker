@@ -120,6 +120,7 @@ $ curl -X GET ALB/hello?name=Docker
 Hello Docker!
 ```
 **HINT:** Append the service endpoint to the ALB.
+
 6. To clean up and delete all resources associated with the application use [copilot app delete](https://aws.github.io/copilot-cli/docs/commands/app-delete/) command.
 ```
 copilot app delete
