@@ -109,6 +109,7 @@ network:
 copilot deploy
 ```
 Once the service is deployed, you can access the sample service at your ALB over the internet.
+
 5. Verify the service endpoints using cURL command. You should get similar output as follows:
 ```
 $ curl -X GET ALB/actuator/health
