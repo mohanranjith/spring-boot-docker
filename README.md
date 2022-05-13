@@ -104,13 +104,21 @@ network:
   vpc:
     placement: 'private'
 ```
-
 4. Deploys the service using [copilot deploy](https://aws.github.io/copilot-cli/docs/commands/deploy/) command
 ```
 copilot deploy
 ```
-
-5. To clean up and delete all resources associated with the application use [copilot app delete](https://aws.github.io/copilot-cli/docs/commands/app-delete/) command.
+Once the service is deployed, you can access the sample service at https://<environment>.<service-name>.<domain> over the internet.
+5. Verify the service endpoints using cURL command. You should get similar output as follows:
+```
+$ curl -X GET https://<environment>.<service-name>.<domain>/actuator/health
+{"status":"UP"}
+$ curl -X GET https://<environment>.<service-name>.<domain>/hello
+Hello World!
+$ curl -X GET https://<environment>.<service-name>.<domain>/hello?name=Docker
+Hello Docker!
+```
+6. To clean up and delete all resources associated with the application use [copilot app delete](https://aws.github.io/copilot-cli/docs/commands/app-delete/) command.
 ```
 copilot app delete
 ```
