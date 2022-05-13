@@ -105,7 +105,7 @@ network:
     placement: 'private'
 ```
 
-4. Deploys the service
+4. Deploys the service using [copilot deploy](https://aws.github.io/copilot-cli/docs/commands/deploy/) command
 ```
 copilot deploy
 ```
