@@ -108,16 +108,17 @@ network:
 ```
 copilot deploy
 ```
-Once the service is deployed, you can access the sample service at https://<environment>.<service-name>.<domain> over the internet.
+Once the service is deployed, you can access the sample service at your ALB over the internet.
 5. Verify the service endpoints using cURL command. You should get similar output as follows:
 ```
-$ curl -X GET https://<environment>.<service-name>.<domain>/actuator/health
+$ curl -X GET ALB/actuator/health
 {"status":"UP"}
-$ curl -X GET https://<environment>.<service-name>.<domain>/hello
+$ curl -X GET ALB/hello
 Hello World!
-$ curl -X GET https://<environment>.<service-name>.<domain>/hello?name=Docker
+$ curl -X GET ALB/hello?name=Docker
 Hello Docker!
 ```
+**HINT:** Append the service endpoint to the ALB.
 6. To clean up and delete all resources associated with the application use [copilot app delete](https://aws.github.io/copilot-cli/docs/commands/app-delete/) command.
 ```
 copilot app delete
