@@ -1,4 +1,8 @@
 version: 0.2
+env:
+  secrets-manager:
+    DOCKERHUB_USERNAME: "DockerHub:DOCKERHUB_USERNAME"
+    DOCKERHUB_PASSWORD: "DockerHub:DOCKERHUB_PASSWORD"
 phases:
   install:
     runtime-versions:
@@ -10,6 +14,8 @@ phases:
       - wget -q https://ecs-cli-v2-release.s3.amazonaws.com/copilot-linux-v1.18.1
       - mv ./copilot-linux-v1.18.1 ./copilot-linux
       - chmod +x ./copilot-linux
+      - echo Docker Login
+      - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASSWORD
   build:
     commands:
       - echo "Run your tests"
