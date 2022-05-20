@@ -1,12 +1,12 @@
 # Build stage
-FROM public.ecr.aws/docker/library/maven:3.8.5-jdk-8-slim AS builder
+FROM public.ecr.aws/docker/library/maven:3.8.5-amazoncorretto-8 AS builder
 WORKDIR /app
 COPY pom.xml .
 RUN mvn dependency:go-offline
 COPY src ./src
 RUN mvn clean package
 
-FROM amazoncorretto:8-alpine-jdk
+FROM public.ecr.aws/docker/library/amazoncorretto:8u332-alpine3.15-jre
 RUN addgroup -S spring && adduser -S spring -G spring
 USER spring:spring
 ARG JAR_FILE=target/*.jar
