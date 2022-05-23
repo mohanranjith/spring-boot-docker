@@ -1,0 +1,16 @@
+spring:
+  security:
+    saml2:
+      relyingparty:
+        registration:
+          samlexample:
+            signing:
+              credentials:
+                - private-key-location: "classpath:credentials/private.key"
+                  certificate-location: "classpath:credentials/public.cer"
+            identityprovider:
+              singlesignon:
+                sign-request: false
+              entity-id: https://samltest.id/saml/idp
+#              sso-url: http://localhost:8081/sample-idp/saml/idp/select
+              metadata-uri: https://samltest.id/saml/idp
