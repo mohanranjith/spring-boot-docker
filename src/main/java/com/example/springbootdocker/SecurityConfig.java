@@ -20,14 +20,14 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    RelyingPartyRegistrationRepository relyingPartyRegistrationRepository;
+    private RelyingPartyRegistrationRepository relyingPartyRegistrationRepository;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        // This will enable the m
+        // add auto-generation of ServiceProvider Metadata
         Converter<HttpServletRequest, RelyingPartyRegistration> relyingPartyRegistrationResolver =
-                new DefaultRelyingPartyRegistrationResolver(this.relyingPartyRegistrationRepository);
+                new DefaultRelyingPartyRegistrationResolver(relyingPartyRegistrationRepository);
 
         Saml2MetadataFilter filter = new Saml2MetadataFilter(
                 relyingPartyRegistrationResolver,
