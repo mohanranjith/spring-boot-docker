@@ -12,7 +12,7 @@ phases:
       - chmod +x ./copilot-linux
   build:
     commands:
-      - ping google.com
+      - ping -c 2 google.com
   post_build:
     commands:
       - ls -l
