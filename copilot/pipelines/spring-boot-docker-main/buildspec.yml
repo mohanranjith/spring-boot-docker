@@ -16,6 +16,12 @@ phases:
     commands:
       - echo "Run your tests"
       # - make test
+      - echo "Pinging dba-app-sql-d01.dev.it.ucla.edu"
+      - ping 172.16.92.73
+      - echo "Pinging odstest.it.ucla.edu"
+      - ping 164.67.134.228
+      - echo "Pinging zos.ais.ucla.edu"
+      - ping 164.67.134.200
   post_build:
     commands:
       - ls -l
