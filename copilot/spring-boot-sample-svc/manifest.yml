@@ -21,7 +21,7 @@ http:
     timeout: 10s
     grace_period: 45s
   deregistration_delay: 5s
-  stickiness: false
+  stickiness: true
   allowed_source_ips: ["149.142.224.0/23", "164.67.224.35/32"]
   alias: test.spring-boot-docker.5ff4efa0.dev.r53.aws.it.ucla.edu
 
@@ -41,7 +41,7 @@ exec: true     # Enable running commands in your container.
 network:
   vpc:
     placement: 'private'
-
+    
 # Optional fields for more advanced use-cases.
 #
 #variables:                    # Pass environment variables as key value pairs.
