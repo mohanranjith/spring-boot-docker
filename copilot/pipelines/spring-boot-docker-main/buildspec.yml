@@ -10,9 +10,13 @@ phases:
       - wget -q https://ecs-cli-v2-release.s3.amazonaws.com/copilot-linux-v1.18.1
       - mv ./copilot-linux-v1.18.1 ./copilot-linux
       - chmod +x ./copilot-linux
+      - yum install -y nc
   build:
     commands:
-      - echo "Run your tests"
+      - echo "Testing port connectivity"
+      - nc -zv dba-app-sql-p01.it.ucla.edu 1433
+      - nc -zv zos.ais.ucla.edu 5021
+      - nc -zv edw.iam.ucla.edu 636
   post_build:
     commands:
       - ls -l
