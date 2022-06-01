@@ -14,9 +14,7 @@ phases:
   build:
     commands:
       - echo "Testing port connectivity"
-      - nc -zv 164.67.134.153 1433
-      - nc -zv zos.ais.ucla.edu 5021
-      - nc -zv edw.iam.ucla.edu 636
+      - nc -zv 172.16.92.73 1433
   post_build:
     commands:
       - ls -l
