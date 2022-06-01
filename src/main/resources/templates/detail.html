@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<h1>Secured Page</h1>
-		<p th:text="'Hello1231351324, ' + ${uid} + '!'" />
+		<p th:text="'Hello, ' + ${uid} + '!'" />
 		<div>
 		    <form th:action="@{/logout}" method="post">
 		        <input type="submit" value="Logout" />
