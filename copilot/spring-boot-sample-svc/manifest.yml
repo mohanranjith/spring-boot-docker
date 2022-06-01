@@ -40,7 +40,7 @@ exec: true     # Enable running commands in your container.
 # Enable deploying to private subnets and specifying additional security groups
 network:
   vpc:
-    placement: 'private
+    placement: 'private'
 
 # Optional fields for more advanced use-cases.
 #
