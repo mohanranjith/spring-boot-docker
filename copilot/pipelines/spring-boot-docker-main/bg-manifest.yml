@@ -1,0 +1,5 @@
+TrafficRoutingConfig:
+  Type: TimeBasedLinear
+  TimeBasedLinear:
+    StepPercentage: 10
+    BakeTimeMins: 10
