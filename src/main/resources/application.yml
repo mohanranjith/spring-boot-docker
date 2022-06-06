@@ -11,11 +11,11 @@ spring:
     saml2:
       relyingparty:
         registration:
-          samlexample:
+          samlexample:                                                #registration id
             acs:
-#              location: "{baseUrl}/custom/{registrationId}"            #enable for localhost
-              location: "https://{baseHost}/custom/{registrationId}"   #enable for AWS  
-            entity-id: https://saml2exampleits.com                    #optional, enable for AWS
+              location: "{baseUrl}/custom/{registrationId}"          #enable for localhost
+#              location: "https://{baseHost}/custom/{registrationId}"  #enable for AWS  
+#            entity-id: https://saml2exampleits.com                    #optional, replace its.com with <team name>.com
             signing:
               credentials:
                 - private-key-location: "classpath:credentials/private.key"

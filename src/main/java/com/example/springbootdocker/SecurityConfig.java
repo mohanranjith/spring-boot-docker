@@ -36,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 new OpenSamlMetadataResolver());
         
 
+        //saml2.loginProcessingUrl needs to match application.yml, not all links work
         http
         	.saml2Login(saml2 -> saml2.loginProcessingUrl("/custom/{registrationId}"))
             .addFilterBefore(filter, Saml2WebSsoAuthenticationFilter.class)
