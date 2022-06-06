@@ -13,9 +13,9 @@ spring:
         registration:
           samlexample:
             acs:
-              location: "{baseUrl}/custom/{registrationId}"            #enable for localhost
-#              location: "https://{baseHost}/custom/{registrationId}"   #enable for AWS  
-#            entity-id: https://saml2exampleits.com                    #optional, enable for AWS
+#              location: "{baseUrl}/custom/{registrationId}"            #enable for localhost
+              location: "https://{baseHost}/custom/{registrationId}"   #enable for AWS  
+            entity-id: https://saml2exampleits.com                    #optional, enable for AWS
             signing:
               credentials:
                 - private-key-location: "classpath:credentials/private.key"

@@ -24,7 +24,9 @@ http:
   deregistration_delay: 5s
   stickiness: false
   allowed_source_ips: ["149.142.224.0/23"]
-  #alias: 607856a5.dev.r53.aws.it.ucla.edu
+  #alias: spring-boot-docker.saml2.ucla.edu
+  # You can specify a custom health check path. The default is "/".
+  # healthcheck: '/'
 
 # Configuration for your containers and service.
 image:
@@ -39,11 +41,11 @@ count: 1       # Number of tasks that should be running in your service.
 exec: true     # Enable running commands in your container.
 
 
-
 # Enable deploying to private subnets and specifying additional security groups
 network:
   vpc:
     placement: 'private'
+
 
 # Optional fields for more advanced use-cases.
 #
