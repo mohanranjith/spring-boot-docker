@@ -13,7 +13,23 @@ The following items should be installed in your system:
 * [Docker Desktop](https://www.docker.com/products/docker-desktop)
 * [AWS Copilot CLI](https://github.com/aws/copilot-cli/releases)
 * [AWS Account](https://aws.amazon.com/free/)
-  
+
+### SAML configurations
+This applications already has Service Provider (SP)'s private key / cert and Identity Provider (IdP)'s metadata included within this PoC (for teaching purposes).
+
+application.yml hold the configurations ( above info, entityId, etc )
+
+SecurityConfig.java holds the programmatic setup for SAML. ( like login url - needs to match acs.location in application.yml)
+
+To change Identity Provider (IdP) like UCLA's IdP, replace identity-provider-certificate.crt.
+
+To generate SP service provider key and certificate, run following command and replace private.key and public.cer:
+
+```
+openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout private.key -out public.cer
+```
+
+
 ## Running locally
 
 The Spring Quickstart Guide is a [Spring Boot](https://spring.io/quickstart) application built using [Maven](https://spring.io/guides/gs/maven/). You can build a jar file and run it from the command line (it should work just as well with Java 8, 11 or 17):
@@ -28,6 +44,8 @@ mvn spring-boot:run
 You can then access the spring boot application here: 
 * http://localhost:8080/hello
 * http://localhost:8080/actuator/health
+* http://localhost:8080/detail (for SSO sign-in process)
+* http://localhost:8080/saml2/service-provider-metadata/samlexample (for downloading SP metadata)
 
 
 ## Building and tagging the Container
@@ -110,6 +128,8 @@ copilot deploy
 ```
 Once the service is deployed, you can access the sample service at your ALB over the internet.
 
+**IMPORTANT:** Before copilot deploy, uncomment acs.location for AWS env (one with https) in application.yml
+
 5. Verify the service endpoints using cURL command. You should get similar output as follows:
 ```
 $ curl -X GET ALB/actuator/health
@@ -121,10 +141,40 @@ Hello Docker!
 ```
 **HINT:** Append the service endpoint to the ALB.
 
-6. To clean up and delete all resources associated with the application use [copilot app delete](https://aws.github.io/copilot-cli/docs/commands/app-delete/) command.
+6. Verify SSO login process (in browser) with following link
+
+```
+local: http://localhost:8080/detail
+remote: ALB/detail
+```
+*Note: for AWS environments, please get metadata from ALB/saml2/service-provider-metadata/samlexample
+and upload to https://samltest.id/upload.php before testing
+
+7. To clean up and delete all resources associated with the application use [copilot app delete](https://aws.github.io/copilot-cli/docs/commands/app-delete/) command.
 ```
 copilot app delete
 ```
+
+## Create CodePipline using AWS Copilot CLI (Deploy after application deployment)
+
+1.Generate CodeBuild and CodePipeline configurations (modify prompts if necessary)
+```
+copilot pipeline init
+```
+This will generate manifest.yml (CodePipeline) and buildspec.yml (CodeBuild)
+
+**NOTE:** This manifest.yml file is a different file. Do not confuse this with manifest.yaml from copilot init step.
+
+2. Commit /copilot folder to the repo.
+
+3. Setup Codepipeline
+```
+copilot pipeline deploy
+```
+
+**IMPORTANT NOTE:** Go to https://console.aws.amazon.com/codesuite/settings/connections to complete Github connection.  Make sure to select EXISTING CodeStar connection and NOT installing the app into github again. Otherwise this will break all other connections for all accounts (organization-wide)
+
+4. At this point Codepipeline should be setup.  Commit new code to repo and see Codepipeline deploy changes Fargate (new fargate task will be created)
 
 
 # Resources
