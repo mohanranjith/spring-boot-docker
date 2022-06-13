@@ -14,8 +14,9 @@ spring:
           samlexample:                                                #registration id
             acs:
               location: "{baseUrl}/custom/{registrationId}"          #enable for localhost
-#              location: "https://{baseHost}/custom/{registrationId}"  #enable for AWS  
-#            entity-id: https://saml2exampleits.com                    #optional, replace its.com with <team name>.com
+#              location: "https://{baseHost}/custom/{registrationId}"  #enable for AWS
+            entity-id: poc-spring-boot-docker-local                   #enable for local, replace its.com with <team name>.com  
+#            entity-id: poc-spring-boot-docker                         #enable for AWS, replace its.com with <team name>.com
             signing:
               credentials:
                 - private-key-location: "classpath:credentials/private.key"
